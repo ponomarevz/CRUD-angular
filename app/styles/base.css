@@ -1,0 +1,71 @@
+
+@keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.animate {
+	animation-duration: 0.4s;
+    animation-fill-mode: both;
+    animation-name: fadeInRight;
+	-moz-animation-duration: 0.4s;
+	-moz-animation-name: fadeInRight;
+	-moz-animation-fill-mode: both;
+	-webkit-animation-duration: 0.4s;
+	-webkit-animation-fill-mode: both;
+	-webkit-animation-name: fadeInRight;
+  }
+
+.heder {
+  background-color: #E7E7E7;
+  box-shadow: inset 0 -1px 2px rgba(0,0,0,.1);
+  }
+ .navbar-brand.logo {
+	color: #80c9f1;
+	text-shadow: 2px 2px 4px white,
+				2px -2px 4px white;
+ }
+ 
+
+.footer {
+  padding: 40px 0;
+  color: #999;
+  text-align: center;
+  background-color: #f9f9f9;
+  border-top: 1px solid #e5e5e5;
+  clear: both;
+}
+
+.navbar .navbar-nav > li > a {
+  font-size: 16px;
+   color: #999;
+}
+
+.how:hover, .navbar .navbar-nav > li:hover,
+.navbar .navbar-nav > li > a:hover {
+  background-color: #52b6ec;
+  color: #fff;
+  transition: 0.7s;
+  cursor:pointer;
+  }
+
+  .navbar .navbar-nav > li > a:focus {
+	background-color: #52b6ec;
+	color: #fff;
+  }
+  .customers {
+	font-size:12px;
+  }
+  .error {
+	padding-left:30px;
+	padding-top:4px;
+	color:red;
+	font-size:12px;
+  }

@@ -1,0 +1,70 @@
+<div class="allUser container col-sm-10">
+	
+<h2> Таблица Person </h1>
+				
+        <div class="row">
+		<form name="personForm">
+		<div class="form-group col-md-4 col-lg-4">
+			<label>Прізвище</label>
+			<input name="first" class="form-control" ng-model="it.first" placeholder = "Прізвище" required  ng-pattern="/^[a-zA-ZА-Яа-яІіЇїЄє]*$/" />
+				<span class="error" ng-show="personForm.first.$error.required">Поле обовязкове!</span>
+				<span class="error" ng-show="personForm.first.$error.pattern">Только буквы плиз</span></div>
+		<div class="form-group col-md-4 col-lg-4">
+			<label>І'мя</label>
+			<input name="last" class="form-control" ng-model="it.last" placeholder = "І'мя" required ng-pattern="/^[a-zA-ZА-Яа-яІіЇїЄє]*$/"/>
+				<span class="error" ng-show="personForm.last.$error.required">Поле обовязкове!</span>
+				<span class="error" ng-show="personForm.last.$error.pattern">Только буквы плиз</span></div>
+		<div class="form-group col-md-4 col-lg-4">
+			<label>Дата народження</label>
+			<input name="date" type = "date"  class="form-control" ng-model="it.dateOfBirth" required/>
+			<span class="error" ng-show="personForm.date.$error.required">Поле обовязкове!</span>
+			</div>
+           <div class="form-group col-md-12 col-lg-12">
+			<button class="btn btn-default" ng-click="addItem(it, personForm)">Додати</button></div>
+		</form>
+		</div>
+		
+		<div class = "list-group">
+			<div class = "row list-group-item-warning">
+			<br>
+			<span class= "col-md-4 col-lg-4">Прізвище</span>
+			<span class= "col-md-4 col-lg-4">І'мя</span>
+			<span class= "col-md-4 col-lg-4">Дата народження</span>
+			</div>
+			<a ng-class="getClassRow(item)" ng-repeat="item in persons" ng-click="selTable(item, $event)" ng-include="'category-tree-table'"></a>
+		</div>
+	
+</div>
+
+<script type="text/ng-template" id="category-tree-table">
+		<span class= "col-sm-4 col-md-4 col-lg-4">{{ item.name.first }}</span>
+		<span class= "col-sm-4 col-md-4 col-lg-4">{{ item.name.last }}</span>
+		<span class= "col-sm-4 col-md-4 col-lg-4">{{ item.dateOfBirth | date }}</span>
+		
+		<br>
+		<span ng-if = "isSelTable(item)">
+				<span class="form">
+				<form name="personForm">
+					<div class= "form-group col-md-4 col-lg-4">
+						<label>Прізвище</label>		
+						<input name="first" class="form-control" ng-model="item.name.first" placeholder="Прізвище" required ng-pattern="/^[a-zA-ZА-Яа-яІіЇїЄє]*$/"/>
+							<span class="error" ng-show="personForm.first.$error.required">Поле обовязкове!</span>
+							<span class="error" ng-show="personForm.first.$error.pattern">Только буквы плиз</span></div>
+	    			<div class= "form-group col-md-4 col-lg-4">
+						<label>І'мя</label>
+						<input name="last" class="form-control" ng-model="item.name.last" placeholder = "І'мя" required ng-pattern="/^[a-zA-ZА-Яа-яІіЇїЄє]*$/"/>
+							<span class="error" ng-show="personForm.last.$error.required">Поле обовязкове!</span>
+							<span class="error" ng-show="personForm.last.$error.pattern">Только буквы плиз</span></div>
+	    			<div class= "form-group col-md-4 col-lg-4">
+						<label>Дата народження</label>
+						<input type = "date" class="form-control" ng-model="item.dateOfBirth" required" /></div>
+					<div class="form-group col-md-12 col-lg-12">
+	    				<button class="btn btn-default" ng-click="Update(item, personForm)">Оновити</button>
+	    				<button class="btn btn-default" ng-click="Dele(item)">Видалити</button>
+	    			</div>
+					</form>
+	    		</span>
+	    		
+	 		</span>
+		
+</script>

@@ -1,0 +1,107 @@
+<div class="allUser customers container col-sm-12">
+	
+<h2> Таблица Customers </h1>
+			
+        <div class="row">
+			<form name="customerForm">
+					<div class="form-group col-sm-3 col-md-3 col-lg-3" ng-class="{'has-error': customerForm.first.$invalid }">
+						<label>Прізвище</label>
+						<input name="first" class="form-control" ng-model="it.first" placeholder="Прізвище" required  ng-pattern="/^[a-zA-ZА-Яа-яІіЇїЄє]*$/"/>
+					</div>
+	    			<div class="form-group col-sm-3 col-md-3 col-lg-3" ng-class="{'has-error': customerForm.last.$invalid }">
+						<label>І'мя</label>
+						<input name="last" class="form-control" ng-model="it.last" placeholder = "І'мя" required  ng-pattern="/^[a-zA-ZА-Яа-яІіЇїЄє]*$/"/>
+					</div>
+	    			<div class="form-group col-sm-3 col-md-3 col-lg-3" ng-class="{'has-error': customerForm.companyName.$invalid }">
+						<label>Компанія</label>
+						<input name="companyName" class="form-control" ng-model="it.companyName" placeholder="Компанія" ng-pattern="/^[a-zA-ZА-Яа-яІіЇїЄє]*$/"/>
+					</div>
+	    			<div class="form-group col-sm-3 col-md-3 col-lg-3" ng-class="{'has-error': customerForm.mob.$invalid }">
+						<label>Мобільний телефон</label>
+						<input name = "mob" type="text" class="form-control" ng-model="it.mobile" placeholder = "Мобільний телефон" phone-input required ng-minlength="13"/>
+					</div>
+					<div class="form-group col-sm-3 col-md-3 col-lg-3" ng-class="{'has-error': customerForm.work.$invalid }">
+						<label>Робочий телефон</label>
+						<input name="work" type="text" class="form-control" ng-model="it.work" placeholder = "Робочий телефон" phone-input ng-minlength="13"/>
+						</div>
+					<div class="form-group col-sm-3 col-md-3 col-lg-3" ng-class="{'has-error': customerForm.skype.$invalid }">
+						<label>Скайп</label>
+						<input name= "skype" class="form-control" ng-model="it.skype" placeholder = "Скайп" ng-pattern="/^[a-zA-Z0-9]*$/"/>
+					</div>
+					<div class="form-group col-sm-3 col-md-3 col-lg-3" ng-class="{'has-error': customerForm.date.$invalid }">
+						<label>Дата народження</label>
+						<input name="date" type = "date" class="form-control" ng-model="it.dateOfBirth" required />
+					</div>
+					<div class="form-group col-sm-12 col-md-12 col-lg-12">
+						<button class="btn btn-default" ng-click="addItem(it, customerForm)">Додати</button>
+					</div>
+			</form>
+		</div>
+		
+		<div class = "list-group">
+			<div class = "row list-group-item-warning">
+			<br>
+			<span class= "col-md-2">Фамилия</span>
+			<span class= "col-md-2">Имя</span>
+			<span class= "col-md-1">Дата рождения</span>
+			<span class= "col-md-2">Компания</span>
+			<span class= "col-md-2">Моб. телефон</span>
+			<span class= "col-md-2">Раб. телефон</span>
+			<span class= "col-md-1">Skype</span>
+			</div>
+			<a ng-class="getClassRow(item)" ng-repeat="item in customers" ng-click="selTable(item, $event)" ng-include="'category-tree-table'"></a>
+		</div>
+	
+</div>
+
+<script type="text/ng-template" id="category-tree-table">
+		<span class= "col-md-2">{{ item.name.first }}</span>
+		<span class= "col-md-2">{{ item.name.last }}</span>
+		<span class= "col-md-1">{{ item.dateOfBirth | date }}</span>
+		<span class= "col-md-2">{{ item.companyName }}</span>
+		<span class= "col-md-2">{{ item.phone.mobile | tel }}</span>
+		<span class= "col-md-2">{{ item.phone.work | tel }}</span>
+		<span class= "col-md-1">{{ item.skype }}</span>
+		<br><br>
+		<span ng-if = "isSelTable(item)">
+				<span  class="form">
+				<form name="customerForm">
+					<div class="form-group col-sm-6 col-md-6 col-lg-6" ng-class="{'has-error': customerForm.first.$invalid }">
+						<label>Прізвище</label>
+						<input name= "first" class="form-control" ng-model="item.name.first" placeholder="Прізвище"  required  ng-pattern="/^[a-zA-ZА-Яа-яІіЇїЄє]*$/"/>
+					</div>
+	    			<div class="form-group col-sm-6 col-md-6 col-lg-6" ng-class="{'has-error': customerForm.last.$invalid }">
+						<label>І'мя</label>
+						<input name= "last" class="form-control" ng-model="item.name.last" placeholder = "І'мя" required  ng-pattern="/^[a-zA-ZА-Яа-яІіЇїЄє]*$/"/>
+					</div>
+	    			<div class="form-group col-sm-6 col-md-6 col-lg-6" ng-class="{'has-error': customerForm.companyName.$invalid }">
+						<label>Компанія</label>
+						<input name="companyName" class="form-control" ng-model="item.companyName" placeholder="Компанія" ng-pattern="/^[a-zA-ZА-Яа-яІіЇїЄє]*$/"/>
+					</div>
+	    			<div class="form-group col-sm-6 col-md-6 col-lg-6" ng-class="{'has-error': customerForm.mob.$invalid }">
+						<label>Мобільний телефон</label>
+						<input name= "mob" type="text" class="form-control" ng-model="item.phone.mobile" phone-input required ng-minlength="13"/>
+					</div>
+					<div class="form-group col-sm-6 col-md-6 col-lg-6" ng-class="{'has-error': customerForm.work.$invalid }">
+						<label>Робочий телефон</label>
+						<input name="work" type="text" class="form-control" ng-model="item.phone.work" phone-input ng-minlength="13"/>
+					</div>
+					<div class="form-group col-sm-6 col-md-6 col-lg-6" ng-class="{'has-error': customerForm.skype.$invalid }">
+						<label>Скайп</label>
+						<input name = "skype" class="form-control" ng-model="item.skype" placeholder = "Скайп" ng-pattern="/^[a-zA-Z0-9]*$/"/>
+					</div>
+					<div class="form-group col-sm-6 col-md-6 col-lg-6" ng-class="{'has-error': customerForm.date.$invalid }">
+						<label>Дата народження</label>
+						<input name="date" type = "date" class="form-control" ng-model="item.dateOfBirth" required/>
+					</div>
+						<br>
+						  				    			
+	    		</span>
+				<div class="form-group col-sm-12 col-md-12 col-lg-12">
+						<button class="btn btn-default" ng-click="Update(item, customerForm)">Оновити</button>
+	    				<button class="btn btn-default" ng-click="Dele(item)">Видалити</button>
+	    		</div>
+				</form>
+	 		</span>
+		
+</script>
